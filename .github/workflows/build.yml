@@ -6,6 +6,9 @@ on:
       - 'v*'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}
@@ -47,7 +50,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: clean-text-macos
-        path: build/mac/
+        path: build/
           
     - name: Upload Linux artifacts
       if: matrix.os == 'ubuntu-latest'
@@ -73,7 +76,6 @@ jobs:
       with:
         files: |
           clean-text-windows/**
-          clean-text-macos/**
           clean-text-linux/**
         generate_release_notes: true
         draft: false
