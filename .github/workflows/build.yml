@@ -41,8 +41,7 @@ jobs:
     - name: Create Windows release package
       if: matrix.os == 'windows-latest'
       run: |
-        cd build/win-unpacked
-        zip -r ../../clean-text-windows.zip .
+        Compress-Archive -Path "build/win-unpacked/*" -DestinationPath "clean-text-windows.zip" -Force
         
     - name: Create macOS release package
       if: matrix.os == 'macos-latest'

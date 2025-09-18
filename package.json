@@ -1,6 +1,6 @@
 {
   "name": "clean-text",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A standalone Electron app to clean hidden UTF-8 characters from text",
   "main": "dist/main.js",
   "scripts": {
