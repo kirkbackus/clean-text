@@ -97,7 +97,7 @@
     },
     "publish": {
       "provider": "github",
-      "owner": "yourusername",
+      "owner": "kirkbackus",
       "repo": "clean-text"
     }
   }
