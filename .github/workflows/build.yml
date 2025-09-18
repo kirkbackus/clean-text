@@ -31,7 +31,7 @@ jobs:
       run: npm run build
       
     - name: Build Electron app
-      run: npm run pack
+      run: npx electron-builder --dir
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
@@ -40,27 +40,21 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: clean-text-windows
-        path: |
-          build/*.exe
-          build/*.exe.blockmap
+        path: build/win-unpacked/
           
     - name: Upload macOS artifacts
       if: matrix.os == 'macos-latest'
       uses: actions/upload-artifact@v4
       with:
         name: clean-text-macos
-        path: |
-          build/*.dmg
-          build/*.dmg.blockmap
+        path: build/mac/
           
     - name: Upload Linux artifacts
       if: matrix.os == 'ubuntu-latest'
       uses: actions/upload-artifact@v4
       with:
         name: clean-text-linux
-        path: |
-          build/*.AppImage
-          build/*.AppImage.tar.gz
+        path: build/linux-unpacked/
           
   release:
     needs: build
@@ -78,9 +72,9 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          clean-text-windows/*.exe
-          clean-text-macos/*.dmg
-          clean-text-linux/*.AppImage
+          clean-text-windows/**
+          clean-text-macos/**
+          clean-text-linux/**
         generate_release_notes: true
         draft: false
         prerelease: false

@@ -49,15 +49,20 @@ This guide explains how to create and publish releases for the Clean Text Electr
 The following files will be created for each platform:
 
 ### Windows
-- `Clean Text Setup 1.0.0.exe` - NSIS installer
-- `Clean Text 1.0.0.exe` - Portable executable
+- `win-unpacked/` directory containing:
+  - `Clean Text.exe` - The main executable
+  - All required DLLs and resources
 
 ### macOS
-- `Clean Text-1.0.0.dmg` - Disk image installer
+- `mac/` directory containing:
+  - `Clean Text.app` - The macOS application bundle
 
 ### Linux
-- `Clean Text-1.0.0.AppImage` - Portable AppImage
-- `clean-text_1.0.0_amd64.deb` - Debian package
+- `linux-unpacked/` directory containing:
+  - `clean-text` - The main executable
+  - All required libraries and resources
+
+**Note**: The current build creates unpacked directories instead of installers to avoid code signing issues. Users can run the executable directly from the directory.
 
 ## Updating the Repository Information
 
