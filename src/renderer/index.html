@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clean Text - UTF-8 Character Cleaner</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Clean Text</h1>
+            <p>Remove hidden UTF-8 characters from your text</p>
+        </header>
+
+        <div class="controls">
+            <div class="control-group">
+                <button id="pasteBtn" class="btn btn-primary">
+                    📋 Paste from Clipboard
+                </button>
+                <button id="clearBtn" class="btn btn-secondary">
+                    🗑️ Clear All
+                </button>
+            </div>
+            <div class="control-group">
+                <button id="copyBtn" class="btn btn-success" disabled>
+                    📤 Copy Cleaned Text
+                </button>
+                <button id="copyOriginalBtn" class="btn btn-outline" disabled>
+                    📋 Copy Original
+                </button>
+            </div>
+        </div>
+
+        <div class="text-areas">
+            <div class="text-area-container">
+                <div class="text-area-header">
+                    <h3>Original Text</h3>
+                    <div class="char-count">
+                        <span id="originalCount">0</span> characters
+                    </div>
+                </div>
+                <textarea 
+                    id="originalText" 
+                    placeholder="Paste your text here or type to see it cleaned in real-time..."
+                    spellcheck="false"
+                ></textarea>
+            </div>
+
+            <div class="text-area-container">
+                <div class="text-area-header">
+                    <h3>Cleaned Text</h3>
+                    <div class="char-count">
+                        <span id="cleanedCount">0</span> characters
+                        <span id="removedCount" class="removed-count"></span>
+                    </div>
+                </div>
+                <textarea 
+                    id="cleanedText" 
+                    placeholder="Cleaned text will appear here..."
+                    readonly
+                    spellcheck="false"
+                ></textarea>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <div class="status-info">
+                <span id="statusText">Ready to clean text</span>
+            </div>
+            <div class="options">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="autoPaste" checked>
+                    Auto-paste from clipboard
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="preserveWhitespace" checked>
+                    Preserve line breaks
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="removeLineBreaks">
+                    Remove line breaks (U+000A)
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
