@@ -10,6 +10,14 @@ dist/
 build/
 out/
 
+# Keep build directory but ignore build artifacts
+build/*.exe
+build/*.dmg
+build/*.AppImage
+build/*.deb
+build/*.blockmap
+build/*.tar.gz
+
 # TypeScript
 *.tsbuildinfo
 
