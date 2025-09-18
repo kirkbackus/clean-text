@@ -38,26 +38,44 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
+    - name: Create Windows release package
+      if: matrix.os == 'windows-latest'
+      run: |
+        cd build/win-unpacked
+        zip -r ../../clean-text-windows.zip .
+        
+    - name: Create macOS release package
+      if: matrix.os == 'macos-latest'
+      run: |
+        cd build
+        zip -r ../clean-text-macos.zip .
+        
+    - name: Create Linux release package
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        cd build/linux-unpacked
+        zip -r ../../clean-text-linux.zip .
+        
     - name: Upload Windows artifacts
       if: matrix.os == 'windows-latest'
       uses: actions/upload-artifact@v4
       with:
         name: clean-text-windows
-        path: build/win-unpacked/
+        path: clean-text-windows.zip
           
     - name: Upload macOS artifacts
       if: matrix.os == 'macos-latest'
       uses: actions/upload-artifact@v4
       with:
         name: clean-text-macos
-        path: build/
+        path: clean-text-macos.zip
           
     - name: Upload Linux artifacts
       if: matrix.os == 'ubuntu-latest'
       uses: actions/upload-artifact@v4
       with:
         name: clean-text-linux
-        path: build/linux-unpacked/
+        path: clean-text-linux.zip
           
   release:
     needs: build
@@ -75,8 +93,8 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          clean-text-windows/**
-          clean-text-linux/**
+          clean-text-windows/clean-text-windows.zip
+          clean-text-linux/clean-text-linux.zip
         generate_release_notes: true
         draft: false
         prerelease: false
